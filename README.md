@@ -14,3 +14,7 @@ configuration files.<br>
 
 Replace `scriptname` with the actual name of your script.
 
+---
+## License
+
+This project is licensed under the MIT License—see the LICENSE file for details.
