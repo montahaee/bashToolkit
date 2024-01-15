@@ -15,6 +15,20 @@ configuration files.<br>
 Replace `scriptname` with the actual name of your script.
 
 ---
+
+## 📄 Script 1: Git Status in Tabular Format
+
+This script displays the output of `git status` in a tabular format with dates and different colors for each part. It's
+a handy tool for visualizing the status of your git repository in a more structured and colorful way.
+
+### 🚀 Usage:
+
+**1.** [General](#-general-usage-for-all-scripts) steps<br>
+**2.** Add it as a git alias using `git config --global alias.tabstatus '!/path/to/script'`.
+
+Now, you can use the script by running `git tabstatus`.
+
+---
 ## License
 
 This project is licensed under the MIT License—see the LICENSE file for details.
