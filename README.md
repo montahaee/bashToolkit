@@ -35,7 +35,6 @@ Now, you can use the script by running `git tabstatus`.
 The second script in our toolkit, `SEXT` (an abbreviation for **S**cript for **EXT**ension change), is designed to 
 change the extension of files in a specified directory. It provides options to apply the changes to all directories 
 (i.e., parent and children) or only the parent directory as described and shown in the next section. 
-.
 
 ### 🚀 Usage:
 
@@ -47,6 +46,24 @@ change the extension of files in a specified directory. It provides options to a
 Now, you can use the script by running `SEXT /path/to/desired/directory/ [-a/-p] current_extension,desired_extension`.
 
 ---
+
+## 📄 Script 3: Handle Kept-Back Packages (UKB)
+
+The third script in our toolkit, `UKB` (for **U**pgrade **K**ept**B**ack package), is designed to handle kept-back packages that often occur after an Ubuntu upgrade. It provides an interactive way to upgrade these packages. Please note, sometimes the upgrade of the kept-back package can affect your system. Therefore, use this script very carefully, considering the compatibility of other packages in your system.
+
+### 🚀 Usage:
+
+The preparation for running is similar to the [last](#-usage-1) one
+
+
+You can now run the script by hitting `ukb`.
+
+---
+
+Stay tuned for more scripts in this toolkit! 🎉
+
+---
+
 ## License
 
 This project is licensed under the MIT License—see the LICENSE file for details.
