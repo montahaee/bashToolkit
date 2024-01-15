@@ -10,7 +10,7 @@ For all the scripts in this toolkit, follow these steps:
 in a common directory designated for all scripts. This helps avoid discrepancies in the paths specified in your 
 configuration files.<br>
 **2.** Run `chmod +x scriptname` to make it executable.<br>
-**3.** Run `chmod 500 scriptname` to protect the script file (make it only readable).
+**3.** Run `chmod 755 scriptname` to protect the script file (make it only readable, writable and executable for yourself as owner).
 
 Replace `scriptname` with the actual name of your script.
 
