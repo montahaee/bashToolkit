@@ -29,6 +29,24 @@ a handy tool for visualizing the status of your git repository in a more structu
 Now, you can use the script by running `git tabstatus`.
 
 ---
+
+## 📄 Script 2: Change File Extensions (SEXT)
+
+The second script in our toolkit, `SEXT` (an abbreviation for **S**cript for **EXT**ension change), is designed to 
+change the extension of files in a specified directory. It provides options to apply the changes to all directories 
+(i.e., parent and children) or only the parent directory as described and shown in the next section. 
+.
+
+### 🚀 Usage:
+
+**1.** [General](#-general-usage-for-all-scripts) steps<br>
+**2.** Open your `~/.bashrc` file in a text editor and copy the following at the end of the file:<br>
+
+`🔵 export PATH=🔴$PATH:/path/to/your`
+
+Now, you can use the script by running `SEXT /path/to/desired/directory/ [-a/-p] current_extension,desired_extension`.
+
+---
 ## License
 
 This project is licensed under the MIT License—see the LICENSE file for details.
