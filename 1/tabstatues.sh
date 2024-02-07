@@ -52,4 +52,9 @@ for file in "${!file_changes[@]}"; do
     fi
     printf "\033[31m%-*s\033[0m \033[32m%-*s\033[0m \033[33m%s\033[0m\n" $((max_mode + 4)) "$modes" $((max_file + 4)) "$file" "$timestamp"
   fi
-done | grep -v '^stat:' | sort -k3r || echo 'No changes in this branch!'
+done | grep -v '^stat:' | sort -k3r
+
+if [ ${#file_changes[@]} -eq 0 ]; then
+  echo 'No changes in this branch!'
+fi
+
