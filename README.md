@@ -30,10 +30,10 @@ Now, you can use the script by running `git tabstatus`.
 
 ---
 
-## 📄 Script 2: Change File Extensions (SEXT)
+## 📄 Script 2: Open File Extensions (OFWE)
 
-The second script in our toolkit, `SEXT` (an abbreviation for **S**cript for **EXT**ension change), is designed to 
-change the extension of files in a specified directory. It provides options to apply the changes to all directories 
+The second on in our toolkit, `OFWE` (an abbreviation for **O**pen  **F**iels **W**ith **E**xtension), is intended to 
+open files with specific extension. It provides options to apply the opening to all directories 
 (i.e., parent and children) or only the parent directory as described and shown in the next section. 
 
 ### 🚀 Usage:
@@ -43,20 +43,37 @@ change the extension of files in a specified directory. It provides options to a
 
 `🔵 export PATH=🔴$PATH:/path/to/your`
 
-Now, you can use the script by running `SEXT /path/to/desired/directory/ [-a/-p] current_extension,desired_extension`.
+Now, you can use the script by running `OFWE /path/to/desired/directory/ [-a/-p] current_extension`.
 
 ---
 
-## 📄 Script 3: Handle Kept-Back Packages (UKB)
+## 📄 Script 3: Change File Extensions (SEXT)
 
-The third script in our toolkit, `UKB` (for **U**pgrade **K**ept**B**ack package), is designed to handle kept-back packages that often occur after an Ubuntu upgrade. It provides an interactive way to upgrade these packages. Please note, sometimes the upgrade of the kept-back package can affect your system. Therefore, use this script very carefully, considering the compatibility of other packages in your system.
+The third script in our toolkit, `SEXT` (an abbreviation for **S**cript for **EXT**ension change), is designed to 
+change the extension of files in a specified directory. It provides options to apply the changes to all directories 
+(i.e., parent and children) or only the parent directory as described and shown in the next section. 
 
 ### 🚀 Usage:
 
+
 The preparation for running is similar to the [last](#-usage-1) one
+
+Now, The script is enabled to run by `SEXT /path/to/desired/directory/ [-a/-p] current_extension,desired_extension`.
+
+---
+
+## 📄 Script 4: Handle Kept-Back Packages (UKB)
+
+The fourth script in our toolkit, `UKB` (for **U**pgrade **K**ept**B**ack package), is designed to handle kept-back packages that often occur after an Ubuntu upgrade. It provides an interactive way to upgrade these packages. Please note, sometimes the upgrade of the kept-back package can affect your system. Therefore, use this script very carefully, considering the compatibility of other packages in your system.
+
+### 🚀 Usage:
+
+The preparation for running is similar to the [second](#-usage-1) one
 
 
 You can now run the script by hitting `ukb`.
+
+
 
 ---
 
