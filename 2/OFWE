@@ -3,6 +3,8 @@
 # Initialize variables
 directory="."
 maxdepth=""
+current=""
+desired=""
 
 # Check if the first argument is a directory
 if [ -d "$1" ]; then
@@ -42,13 +44,19 @@ if [ -z "$desired" ]; then
   exit 1
 fi
 
+# Check if the extension has a leading dot and prompt the user to remove it
+if [[ $current == .* || $desired == .* ]]; then
+  echo "Warning: Please enter extensions without a leading dot (e.g., ogg instead of .ogg)"
+  exit 1
+fi
+
 # Check if maxdepth is empty or an integer
 if [ -z "$maxdepth" ]; then
   # Find and open files in all directories
-  find "$directory" -type f -name "*.$current" -exec bash -c 'xdg-open "$1"' _ {} \; 
+  find "$directory" -type f -name "*.$current" -exec bash -c 'xdg-open "$1"' _ {} \;
 elif [ "$maxdepth" -eq "$maxdepth" ] 2>/dev/null; then
   # Find and open files in the parent directory
-  find "$directory" -maxdepth 1 -type f -name "*.$current" -exec bash -c 'xdg-open "$1"' _ {} \; 
+  find "$directory" -maxdepth 1 -type f -name "*.$current" -exec bash -c 'xdg-open "$1"' _ {} \;
 else
   # Invalid maxdepth value
   echo "Invalid maxdepth value: $maxdepth. Please try again."
