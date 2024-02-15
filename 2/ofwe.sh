@@ -30,7 +30,6 @@ while getopts "a:p:" opt; do
   esac
 done
 
-
 # Invalid extension
 if [ -z "$current" ]; then
   echo "Error: You've entered an empty extension for current files."
@@ -46,6 +45,12 @@ fi
 # Initialize an array variable
 files=()
 
+# Save the current IFS
+OLDIFS=$IFS
+
+# Change IFS to handle filenames with spaces
+IFS=$'\n'
+
 # Check if maxdepth is empty or an integer
 if [ -z "$maxdepth" ]; then
   # Find and store files in all directories in the array
@@ -59,13 +64,21 @@ else
   exit 1
 fi
 
+# Restore the IFS
+IFS=$OLDIFS
+
 # Check if the array is empty and prompt the user
 if [ ${#files[@]} -eq 0 ]; then
   echo "No files with the extension '$current' found in the directory '$directory'."
 else
   # Loop through the array and open each file
   for file in "${files[@]}"; do
-    xdg-open "$file"
+    echo "Opening file: $file" # Print the file path
+    if [ -f "$file" ]; then
+      xdg-open "$file"
+    else
+      echo "File does not exist: $file" # Print an error message if the file does not exist
+    fi
   done
 fi
 
