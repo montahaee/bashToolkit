@@ -77,6 +77,40 @@ You can now run the script by hitting `ukb`.
 
 ---
 
+## 📄 Script 5: Wheelhouse Python Packages (WHPYP)
+Having separate virtual environments for each project does mean that the same packages may be installed multiple times on your system, once for each environment. This can take up more disk space, as each environment maintains its own copy of the installed packages.
+
+However, the advantages of this approach often outweigh the additional disk space usage:
+
+- **Isolation**: 
+Each project has its own set of dependencies, which prevents conflicts between projects that may require different versions of the same package.
+
+- **Reproducibility**:
+It’s easier to share and collaborate on projects with others when the environment can be replicated exactly, including all dependencies.
+
+- **Testing**:
+You can test new package versions in one project without affecting other projects.
+
+The fiveth script in our toolkit, `WHPYP` (for **W**eelhouse **PY**thon **P**ackage), is a good approach to managing Python package dependencies across multiple projects. It uses a wheelhouse, a directory where Python wheel files are stored, to manage package installations. Here’s how it works:
+
+1. The `update_wheelhouse` function updates the wheel package and then updates all packages in the wheelhouse. This ensures that you have the latest versions of all packages.
+
+2. The `install_all_from_wheelhouse` function installs all packages from the wheelhouse into a project's virtual environment. This ensures that each project has its own isolated set of dependencies.
+
+### 🚀 Usage:
+
+The preparation for running is similar to the usageof the [second](#-usage-1) script.
+
+
+You can now run the script by hitting `whpyp  /path/to/venv_project`.
+
+Remember to run this script every time you start a new project or when you want to update the packages in your existing projects.
+
+please note that this script assumes that all your projects can work with the latest versions of their dependencies.
+
+
+
+---
 Stay tuned for more scripts in this toolkit! 🎉
 
 ---
