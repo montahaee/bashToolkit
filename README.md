@@ -102,13 +102,19 @@ The fiveth script in our toolkit, `WHPYP` (for **W**eelhouse **PY**thon **P**ack
 The preparation for running is similar to the usageof the [second](#-usage-1) script.
 
 
-You can now run the script by hitting `whpyp  /path/to/venv_project`.
+You can now run the script by hitting `whpyp /path/to/venv_project`.
 
 Remember to run this script every time you start a new project or when you want to update the packages in your existing projects.
 
 please note that this script assumes that all your projects can work with the latest versions of their dependencies.
+In the case of the requirement of specific versions, you would call this second script 'whpypr' with the path to the virtual environment
+and the requirements file as arguments. For example:
 
+`whpypr /path/to/venv path/to/requirements.txt`
 
+This way, each project can specify its own dependencies, including the required versions, in its requirements file. 
+The script will then create or update the virtual environment with these specific versions. This approach maintains 
+the benefits of isolation and reproducibility while also allowing for specific package versions.
 
 ---
 Stay tuned for more scripts in this toolkit! 🎉
