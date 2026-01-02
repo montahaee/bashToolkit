@@ -117,6 +117,218 @@ The script will then create or update the virtual environment with these specifi
 the benefits of isolation and reproducibility while also allowing for specific package versions.
 
 ---
+## 📄 Script 6: SCIM — Scan Image Manager
+
+`SCIM` is a small CLI utility for scanning documents via SANE (`scanimage`) and converting pages into PDF/JPEG/PNG. It supports color or grayscale, per-page scanning, interactive multi-page scanning and combining pages into a single output file (e.g. multi-page PDF).
+
+> **Preparation for SCIM** — run this before using SCIM.
+
+### 🖨️ Scanner Setup & Preparation (Ubuntu)
+
+This section explains how to activate and verify a scanner on Ubuntu before using **SCIM** (Scan Image Manager).
+
+Ubuntu uses **SANE** (*Scanner Access Now Easy*) as its scanning backend. In most cases, scanners work automatically once the correct backend or driver is installed.
+
+---
+
+### 🔍 6.1 Check if Ubuntu Already Detects Your Scanner
+
+Open a terminal and run:
+
+```
+scanimage -L
+```
+
+If your scanner is detected, you’ll see something like:
+
+```
+device `epson2:...` is a Epson flatbed scanner
+```
+
+If nothing appears, continue with the steps below.
+
+### 🖨️ What this command does
+
+`scanimage -L` asks SANE:
+
+> "List all scanners you can detect."
+
+If SANE is installed correctly, this command works on **all Linux distributions**, not just Ubuntu.
+
+---
+
+### 🧰 6.2 Install Basic Scanner Support (SANE)
+
+Ubuntu usually ships with SANE preinstalled, but to ensure everything is present:
+
+```
+sudo apt update
+sudo apt install sane sane-utils simple-scan
+```
+
+* **SANE** – backend that communicates with the scanner
+* **sane-utils** – CLI tools like `scanimage`
+* **Simple Scan** – default Ubuntu GUI scanning app
+
+### Other Distributions
+
+**Fedora**
+
+```
+sudo dnf install sane-backends
+```
+
+**Arch / Manjaro**
+
+```
+sudo pacman -S sane
+```
+
+**openSUSE**
+
+```
+sudo zypper install sane-backends
+```
+
+---
+
+### 🖨️ 6.3 HP Scanners (Very Common)
+
+HP devices require **HPLIP** (HP Linux Imaging and Printing):
+
+```
+sudo apt install hplip hplip-gui
+```
+
+Then run:
+
+```
+hp-setup
+```
+
+This installs drivers and enables scanning support for HP multifunction devices.
+
+---
+
+### 🧩 6.4 Epson Scanners
+
+Epson often provides proprietary `.deb` drivers. On newer Ubuntu versions (e.g. 24.04), some older installers fail because they expect `libsane`.
+
+### Workaround
+
+```
+sudo apt install libsane1
+```
+
+If available, prefer Epson’s **updated** driver packages compatible with your Ubuntu version.
+
+---
+
+### 🌐 6.5 Network Scanners
+
+For scanners available over the network:
+
+```
+sudo nano /etc/sane.d/net.conf
+```
+
+Add the scanner’s IP address (one per line), then restart SANE:
+
+```
+sudo systemctl restart saned
+```
+
+---
+
+### 📷 6.6 Scan Using a GUI (Optional)
+
+Ubuntu offers multiple scanning applications:
+
+* **Simple Scan** – default, easy to use
+* **Skanlite** – KDE alternative
+* **XSane** – advanced controls
+
+Launch Simple Scan:
+
+```
+simple-scan
+```
+
+---
+
+### 🧪 6.7 Test the Scanner
+
+To verify that scanning works at a low level:
+
+```
+scanimage --test
+```
+
+If no errors are returned, your scanner is ready.
+
+---
+
+### ✅ Next Step: Use SCIM
+
+Once your scanner is detected and working, you can safely use **SCIM** for:
+
+* single-page scans
+* multi-page interactive scans
+* combined PDFs
+* JPEG / PNG output
+* color or grayscale scanning
+
+Refer to the **SCIM Usage** section below for detailed command examples.
+
+---
+
+### SCIM — Requirements
+
+Make sure these are installed:
+
+```bash
+sudo apt install sane-utils imagemagick   # imagemagick provides `convert`
+# optionally: sudo apt install img2pdf  (faster PDF assembly alternative)
+```
+
+### SCIM CLI syntax
+
+```
+scim <output-name> <format> [-g] <resolution> [quality]
+```
+
+* `<output-name>` — base name for output (no extension)
+* `<format>` — `pdf` | `jpeg` | `png`
+* `-g` — grayscale mode (optional; default is color)
+* `<resolution>` — DPI (e.g. `300`)
+* `[quality]` — JPEG quality (required for `pdf`, optional/ignored for single `jpeg`/`png`)
+
+### Examples
+
+```bash
+# Multi-page interactive PDF (300 dpi, JPEG compression quality 60)
+scim scanTest pdf 300 60
+scim scanTest pdf -g 300 60   # grayscale
+
+# Single or multi-page JPEG (300 dpi)
+scim scanTest jpeg 300
+scim scanTest jpeg -g 300
+
+# Single or multi-page PNG (300 dpi)
+scim scanTest png 300
+scim scanTest png -g 300
+```
+
+### Behavior
+
+* The script prompts for each scanned page (press Enter to scan next page; respond `n` to finish).
+* For `pdf`: all pages are combined into `output-name.pdf` using JPEG compression at the supplied quality.
+* For `jpeg`/`png`: a single-page scan produces `output-name.jpeg` or `output-name.png`. If multiple pages are scanned, the script creates `output-name-001.jpeg`, `output-name-002.jpeg`, … (or `.png`).
+* The script creates temporary TIFFs for each scanned page, then converts/combines and **cleans up** the temp files on exit.
+* The script prevents accidental overwrites by refusing to write if the target filename already exists.
+
+
+---
 Stay tuned for more scripts in this toolkit! 🎉
 
 ---
